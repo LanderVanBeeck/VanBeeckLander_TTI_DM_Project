@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="42385d38a39a4428966ea2c5463a6049" Name="Diagram1">
+        <EntityTypeShape EntityType="TwitchModel.Game" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwitchModel.Gamecategory" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwitchModel.PaymentMethod" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwitchModel.Prime" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwitchModel.User" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwitchModel.UserGame" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwitchModel.UserPrime" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TwitchModel.Wallet" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="TwitchModel.FK_Game_Gamecategory" ManuallyRouted="false" />
+        <AssociationConnector Association="TwitchModel.FK_UserGame_Game" ManuallyRouted="false" />
+        <AssociationConnector Association="TwitchModel.FK_Wallet_PaymentMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="TwitchModel.FK_UserPrime_Prime" ManuallyRouted="false" />
+        <AssociationConnector Association="TwitchModel.FK_User_Wallet" ManuallyRouted="false" />
+        <AssociationConnector Association="TwitchModel.FK_UserGame_User" ManuallyRouted="false" />
+        <AssociationConnector Association="TwitchModel.FK_UserPrime_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
