@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TwitchModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="gameId" />
+          </Key>
+          <Property Name="gameId" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="releaseDate" Type="date" Nullable="false" />
+          <Property Name="publishers" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="bio" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="developer" Type="varchar" MaxLength="50" />
+          <Property Name="mode" Type="varchar" MaxLength="25" />
+          <Property Name="platform" Type="varchar" MaxLength="50" />
+          <Property Name="gamecategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="Gamecategory">
+          <Key>
+            <PropertyRef Name="gamecategoryId" />
+          </Key>
+          <Property Name="gamecategoryId" Type="int" Nullable="false" />
+          <Property Name="category" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="paymentMethodId" />
+          </Key>
+          <Property Name="paymentMethodId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prime">
+          <Key>
+            <PropertyRef Name="primeId" />
+          </Key>
+          <Property Name="primeId" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="benefits" Type="varchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="displayname" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="bio" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="language" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="walletId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserGame">
+          <Key>
+            <PropertyRef Name="userGameId" />
+          </Key>
+          <Property Name="userGameId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="gameId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserPrime">
+          <Key>
+            <PropertyRef Name="userPrimeId" />
+          </Key>
+          <Property Name="userPrimeId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" />
+          <Property Name="primeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Wallet">
+          <Key>
+            <PropertyRef Name="walletId" />
+          </Key>
+          <Property Name="walletId" Type="int" Nullable="false" />
+          <Property Name="balance" Type="int" Nullable="false" />
+          <Property Name="giftCardBalance" Type="int" Nullable="false" />
+          <Property Name="paymentMethodId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Game_Gamecategory">
+          <End Role="Gamecategory" Type="Self.Gamecategory" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gamecategory">
+              <PropertyRef Name="gamecategoryId" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="gamecategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Wallet">
+          <End Role="Wallet" Type="Self.Wallet" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wallet">
+              <PropertyRef Name="walletId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="walletId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGame_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="UserGame" Type="Self.UserGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="gameId" />
+            </Principal>
+            <Dependent Role="UserGame">
+              <PropertyRef Name="gameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGame_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserGame" Type="Self.UserGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="UserGame">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPrime_Prime">
+          <End Role="Prime" Type="Self.Prime" Multiplicity="0..1" />
+          <End Role="UserPrime" Type="Self.UserPrime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prime">
+              <PropertyRef Name="primeId" />
+            </Principal>
+            <Dependent Role="UserPrime">
+              <PropertyRef Name="primeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPrime_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserPrime" Type="Self.UserPrime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="UserPrime">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wallet_PaymentMethod">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="Wallet" Type="Self.Wallet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="paymentMethodId" />
+            </Principal>
+            <Dependent Role="Wallet">
+              <PropertyRef Name="paymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TwitchModelStoreContainer">
+          <EntitySet Name="Game" EntityType="Self.Game" Schema="Twitch" store:Type="Tables" />
+          <EntitySet Name="Gamecategory" EntityType="Self.Gamecategory" Schema="Twitch" store:Type="Tables" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="Twitch" store:Type="Tables" />
+          <EntitySet Name="Prime" EntityType="Self.Prime" Schema="Twitch" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="Twitch" store:Type="Tables" />
+          <EntitySet Name="UserGame" EntityType="Self.UserGame" Schema="Twitch" store:Type="Tables" />
+          <EntitySet Name="UserPrime" EntityType="Self.UserPrime" Schema="Twitch" store:Type="Tables" />
+          <EntitySet Name="Wallet" EntityType="Self.Wallet" Schema="Twitch" store:Type="Tables" />
+          <AssociationSet Name="FK_Game_Gamecategory" Association="Self.FK_Game_Gamecategory">
+            <End Role="Gamecategory" EntitySet="Gamecategory" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Wallet" Association="Self.FK_User_Wallet">
+            <End Role="Wallet" EntitySet="Wallet" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGame_Game" Association="Self.FK_UserGame_Game">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="UserGame" EntitySet="UserGame" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGame_User" Association="Self.FK_UserGame_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserGame" EntitySet="UserGame" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPrime_Prime" Association="Self.FK_UserPrime_Prime">
+            <End Role="Prime" EntitySet="Prime" />
+            <End Role="UserPrime" EntitySet="UserPrime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPrime_User" Association="Self.FK_UserPrime_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserPrime" EntitySet="UserPrime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wallet_PaymentMethod" Association="Self.FK_Wallet_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="Wallet" EntitySet="Wallet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TwitchModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="gameId" />
+          </Key>
+          <Property Name="gameId" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="releaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="publishers" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bio" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="developer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="platform" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gamecategoryId" Type="Int32" />
+          <NavigationProperty Name="Gamecategory" Relationship="Self.FK_Game_Gamecategory" FromRole="Game" ToRole="Gamecategory" />
+          <NavigationProperty Name="UserGame" Relationship="Self.FK_UserGame_Game" FromRole="Game" ToRole="UserGame" />
+        </EntityType>
+        <EntityType Name="Gamecategory">
+          <Key>
+            <PropertyRef Name="gamecategoryId" />
+          </Key>
+          <Property Name="gamecategoryId" Type="Int32" Nullable="false" />
+          <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Self.FK_Game_Gamecategory" FromRole="Gamecategory" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="paymentMethodId" />
+          </Key>
+          <Property Name="paymentMethodId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Wallet" Relationship="Self.FK_Wallet_PaymentMethod" FromRole="PaymentMethod" ToRole="Wallet" />
+        </EntityType>
+        <EntityType Name="Prime">
+          <Key>
+            <PropertyRef Name="primeId" />
+          </Key>
+          <Property Name="primeId" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="benefits" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="UserPrime" Relationship="Self.FK_UserPrime_Prime" FromRole="Prime" ToRole="UserPrime" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="displayname" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="bio" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="language" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="walletId" Type="Int32" />
+          <NavigationProperty Name="Wallet" Relationship="Self.FK_User_Wallet" FromRole="User" ToRole="Wallet" />
+          <NavigationProperty Name="UserGame" Relationship="Self.FK_UserGame_User" FromRole="User" ToRole="UserGame" />
+          <NavigationProperty Name="UserPrime" Relationship="Self.FK_UserPrime_User" FromRole="User" ToRole="UserPrime" />
+        </EntityType>
+        <EntityType Name="UserGame">
+          <Key>
+            <PropertyRef Name="userGameId" />
+          </Key>
+          <Property Name="userGameId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="gameId" Type="Int32" />
+          <NavigationProperty Name="Game" Relationship="Self.FK_UserGame_Game" FromRole="UserGame" ToRole="Game" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserGame_User" FromRole="UserGame" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserPrime">
+          <Key>
+            <PropertyRef Name="userPrimeId" />
+          </Key>
+          <Property Name="userPrimeId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" />
+          <Property Name="primeId" Type="Int32" />
+          <NavigationProperty Name="Prime" Relationship="Self.FK_UserPrime_Prime" FromRole="UserPrime" ToRole="Prime" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserPrime_User" FromRole="UserPrime" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Wallet">
+          <Key>
+            <PropertyRef Name="walletId" />
+          </Key>
+          <Property Name="walletId" Type="Int32" Nullable="false" />
+          <Property Name="balance" Type="Int32" Nullable="false" />
+          <Property Name="giftCardBalance" Type="Int32" Nullable="false" />
+          <Property Name="paymentMethodId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_Wallet_PaymentMethod" FromRole="Wallet" ToRole="PaymentMethod" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Wallet" FromRole="Wallet" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Game_Gamecategory">
+          <End Role="Gamecategory" Type="Self.Gamecategory" Multiplicity="0..1" />
+          <End Role="Game" Type="Self.Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gamecategory">
+              <PropertyRef Name="gamecategoryId" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="gamecategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGame_Game">
+          <End Role="Game" Type="Self.Game" Multiplicity="0..1" />
+          <End Role="UserGame" Type="Self.UserGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="gameId" />
+            </Principal>
+            <Dependent Role="UserGame">
+              <PropertyRef Name="gameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Wallet_PaymentMethod">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+          <End Role="Wallet" Type="Self.Wallet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="paymentMethodId" />
+            </Principal>
+            <Dependent Role="Wallet">
+              <PropertyRef Name="paymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPrime_Prime">
+          <End Role="Prime" Type="Self.Prime" Multiplicity="0..1" />
+          <End Role="UserPrime" Type="Self.UserPrime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prime">
+              <PropertyRef Name="primeId" />
+            </Principal>
+            <Dependent Role="UserPrime">
+              <PropertyRef Name="primeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Wallet">
+          <End Role="Wallet" Type="Self.Wallet" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Wallet">
+              <PropertyRef Name="walletId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="walletId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGame_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserGame" Type="Self.UserGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="UserGame">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPrime_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="UserPrime" Type="Self.UserPrime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="UserPrime">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TwitchEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Game" EntityType="Self.Game" />
+          <EntitySet Name="Gamecategory" EntityType="Self.Gamecategory" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="Prime" EntityType="Self.Prime" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="UserGame" EntityType="Self.UserGame" />
+          <EntitySet Name="UserPrime" EntityType="Self.UserPrime" />
+          <EntitySet Name="Wallet" EntityType="Self.Wallet" />
+          <AssociationSet Name="FK_Game_Gamecategory" Association="Self.FK_Game_Gamecategory">
+            <End Role="Gamecategory" EntitySet="Gamecategory" />
+            <End Role="Game" EntitySet="Game" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGame_Game" Association="Self.FK_UserGame_Game">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="UserGame" EntitySet="UserGame" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Wallet_PaymentMethod" Association="Self.FK_Wallet_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="Wallet" EntitySet="Wallet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPrime_Prime" Association="Self.FK_UserPrime_Prime">
+            <End Role="Prime" EntitySet="Prime" />
+            <End Role="UserPrime" EntitySet="UserPrime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Wallet" Association="Self.FK_User_Wallet">
+            <End Role="Wallet" EntitySet="Wallet" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGame_User" Association="Self.FK_UserGame_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserGame" EntitySet="UserGame" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPrime_User" Association="Self.FK_UserPrime_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserPrime" EntitySet="UserPrime" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TwitchModelStoreContainer" CdmEntityContainer="TwitchEntities">
+          <EntitySetMapping Name="Game">
+            <EntityTypeMapping TypeName="TwitchModel.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="gameId" ColumnName="gameId" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="releaseDate" ColumnName="releaseDate" />
+                <ScalarProperty Name="publishers" ColumnName="publishers" />
+                <ScalarProperty Name="bio" ColumnName="bio" />
+                <ScalarProperty Name="developer" ColumnName="developer" />
+                <ScalarProperty Name="mode" ColumnName="mode" />
+                <ScalarProperty Name="platform" ColumnName="platform" />
+                <ScalarProperty Name="gamecategoryId" ColumnName="gamecategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gamecategory">
+            <EntityTypeMapping TypeName="TwitchModel.Gamecategory">
+              <MappingFragment StoreEntitySet="Gamecategory">
+                <ScalarProperty Name="gamecategoryId" ColumnName="gamecategoryId" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethod">
+            <EntityTypeMapping TypeName="TwitchModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="paymentMethodId" ColumnName="paymentMethodId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prime">
+            <EntityTypeMapping TypeName="TwitchModel.Prime">
+              <MappingFragment StoreEntitySet="Prime">
+                <ScalarProperty Name="primeId" ColumnName="primeId" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="benefits" ColumnName="benefits" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="TwitchModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="displayname" ColumnName="displayname" />
+                <ScalarProperty Name="bio" ColumnName="bio" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="walletId" ColumnName="walletId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGame">
+            <EntityTypeMapping TypeName="TwitchModel.UserGame">
+              <MappingFragment StoreEntitySet="UserGame">
+                <ScalarProperty Name="userGameId" ColumnName="userGameId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="gameId" ColumnName="gameId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPrime">
+            <EntityTypeMapping TypeName="TwitchModel.UserPrime">
+              <MappingFragment StoreEntitySet="UserPrime">
+                <ScalarProperty Name="userPrimeId" ColumnName="userPrimeId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="primeId" ColumnName="primeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Wallet">
+            <EntityTypeMapping TypeName="TwitchModel.Wallet">
+              <MappingFragment StoreEntitySet="Wallet">
+                <ScalarProperty Name="walletId" ColumnName="walletId" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="giftCardBalance" ColumnName="giftCardBalance" />
+                <ScalarProperty Name="paymentMethodId" ColumnName="paymentMethodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
