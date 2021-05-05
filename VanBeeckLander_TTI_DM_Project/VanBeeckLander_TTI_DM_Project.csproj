@@ -125,6 +125,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Twitch_DAL\Twitch_DAL.csproj">
+      <Project>{2331efbc-ef0c-4039-8817-9f73f796a475}</Project>
+      <Name>Twitch_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Twitch_Models\Twitch_Models.csproj">
+      <Project>{be2ba747-e585-40d2-825b-8852eaee6c8e}</Project>
+      <Name>Twitch_Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

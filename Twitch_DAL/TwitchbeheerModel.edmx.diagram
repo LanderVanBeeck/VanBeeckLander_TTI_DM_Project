@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="42385d38a39a4428966ea2c5463a6049" Name="Diagram1">
+      <Diagram DiagramId="a4fda17d2eb54ef3aada2bd4984b3d8e" Name="Diagram1">
         <EntityTypeShape EntityType="TwitchModel.Game" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TwitchModel.Gamecategory" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="TwitchModel.PaymentMethod" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />

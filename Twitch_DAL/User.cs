@@ -17,8 +17,8 @@ namespace Twitch_DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.UserGame = new HashSet<UserGame>();
-            this.UserPrime = new HashSet<UserPrime>();
+            this.UsersGames = new HashSet<UserGame>();
+            this.UsersPrimes = new HashSet<UserPrime>();
         }
     
         public int userId { get; set; }
@@ -31,10 +31,10 @@ namespace Twitch_DAL
         public string language { get; set; }
         public Nullable<int> walletId { get; set; }
     
-        public virtual Wallet Wallet { get; set; }
+        public virtual Wallet Wallets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserGame> UserGame { get; set; }
+        public virtual ICollection<UserGame> UsersGames { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserPrime> UserPrime { get; set; }
+        public virtual ICollection<UserPrime> UsersPrimes { get; set; }
     }
 }

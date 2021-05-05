@@ -39,7 +39,7 @@
           </Key>
           <Property Name="primeId" Type="int" Nullable="false" />
           <Property Name="price" Type="int" Nullable="false" />
-          <Property Name="benefits" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="benefits" Type="varchar" MaxLength="75" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -245,7 +245,7 @@
           </Key>
           <Property Name="primeId" Type="Int32" Nullable="false" />
           <Property Name="price" Type="Int32" Nullable="false" />
-          <Property Name="benefits" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="benefits" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="UserPrime" Relationship="Self.FK_UserPrime_Prime" FromRole="Prime" ToRole="UserPrime" />
         </EntityType>
         <EntityType Name="User">
@@ -261,9 +261,9 @@
           <Property Name="title" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="language" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="walletId" Type="Int32" />
-          <NavigationProperty Name="Wallet" Relationship="Self.FK_User_Wallet" FromRole="User" ToRole="Wallet" />
-          <NavigationProperty Name="UserGame" Relationship="Self.FK_UserGame_User" FromRole="User" ToRole="UserGame" />
-          <NavigationProperty Name="UserPrime" Relationship="Self.FK_UserPrime_User" FromRole="User" ToRole="UserPrime" />
+          <NavigationProperty Name="Wallets" Relationship="Self.FK_User_Wallet" FromRole="User" ToRole="Wallet" />
+          <NavigationProperty Name="UsersGames" Relationship="Self.FK_UserGame_User" FromRole="User" ToRole="UserGame" />
+          <NavigationProperty Name="UsersPrimes" Relationship="Self.FK_UserPrime_User" FromRole="User" ToRole="UserPrime" />
         </EntityType>
         <EntityType Name="UserGame">
           <Key>
@@ -272,8 +272,8 @@
           <Property Name="userGameId" Type="Int32" Nullable="false" />
           <Property Name="userId" Type="Int32" />
           <Property Name="gameId" Type="Int32" />
-          <NavigationProperty Name="Game" Relationship="Self.FK_UserGame_Game" FromRole="UserGame" ToRole="Game" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UserGame_User" FromRole="UserGame" ToRole="User" />
+          <NavigationProperty Name="Games" Relationship="Self.FK_UserGame_Game" FromRole="UserGame" ToRole="Game" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserGame_User" FromRole="UserGame" ToRole="User" />
         </EntityType>
         <EntityType Name="UserPrime">
           <Key>
@@ -282,8 +282,8 @@
           <Property Name="userPrimeId" Type="Int32" Nullable="false" />
           <Property Name="userId" Type="Int32" />
           <Property Name="primeId" Type="Int32" />
-          <NavigationProperty Name="Prime" Relationship="Self.FK_UserPrime_Prime" FromRole="UserPrime" ToRole="Prime" />
-          <NavigationProperty Name="User" Relationship="Self.FK_UserPrime_User" FromRole="UserPrime" ToRole="User" />
+          <NavigationProperty Name="Primes" Relationship="Self.FK_UserPrime_Prime" FromRole="UserPrime" ToRole="Prime" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_UserPrime_User" FromRole="UserPrime" ToRole="User" />
         </EntityType>
         <EntityType Name="Wallet">
           <Key>
@@ -293,8 +293,8 @@
           <Property Name="balance" Type="Int32" Nullable="false" />
           <Property Name="giftCardBalance" Type="Int32" Nullable="false" />
           <Property Name="paymentMethodId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_Wallet_PaymentMethod" FromRole="Wallet" ToRole="PaymentMethod" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Wallet" FromRole="Wallet" ToRole="User" />
+          <NavigationProperty Name="PaymentMethods" Relationship="Self.FK_Wallet_PaymentMethod" FromRole="Wallet" ToRole="PaymentMethod" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Wallet" FromRole="Wallet" ToRole="User" />
         </EntityType>
         <Association Name="FK_Game_Gamecategory">
           <End Role="Gamecategory" Type="Self.Gamecategory" Multiplicity="0..1" />

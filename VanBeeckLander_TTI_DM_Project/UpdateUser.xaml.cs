@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Twitch_Models;
+using Twitch_DAL;
 
 namespace VanBeeckLander_TTI_DM_Project
 {
@@ -26,7 +28,7 @@ namespace VanBeeckLander_TTI_DM_Project
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnUpdateUser_Click(object sender, RoutedEventArgs e)

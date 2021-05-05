@@ -19,7 +19,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBox x:Name="txtUsername" Grid.Row="0" Grid.Column="0" Margin="5" materialDesign:HintAssist.Hint="Username"/>
             <TextBox x:Name="txtDisplayname" Grid.Row="0" Grid.Column="1" Margin="5" materialDesign:HintAssist.Hint="Displayname"/>
@@ -28,15 +28,16 @@
             <TextBox x:Name="txtBio" Grid.Row="2" Grid.Column="0" Margin="5" materialDesign:HintAssist.Hint="Bio"/>
             <TextBox x:Name="txtTitle" Grid.Row="2" Grid.Column="1" Margin="5" materialDesign:HintAssist.Hint="Title"/>
             <ComboBox x:Name="cmbLanguage" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" materialDesign:HintAssist.Hint="Language"/>
+            <ComboBox x:Name="cmbPrime" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" materialDesign:HintAssist.Hint="Select a prime option to add to the user (optional)"/>
             <Button x:Name="btnCancel"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    Width="375" Grid.Row="4" Grid.Column="0" Click="btnCancel_Click"
+    Width="375" Grid.Row="5" Grid.Column="0" Click="btnCancel_Click"
     ToolTip="Resource name: MaterialDesignRaisedButton">
                 Cancel
             </Button>
             <Button x:Name="btnUpdateUser"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    Width="375" Grid.Row="4" Grid.Column="1" Click="btnUpdateUser_Click"
+    Width="375" Grid.Row="5" Grid.Column="1" Click="btnUpdateUser_Click"
     ToolTip="Resource name: MaterialDesignRaisedButton">
                 Update user
             </Button>

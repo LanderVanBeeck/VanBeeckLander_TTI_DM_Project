@@ -11,6 +11,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -18,37 +20,56 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="DataUsers" AutoGenerateColumns="True" Margin="5" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+        <Button x:Name="btnShowUsers"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Width="750" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Click="btnShowUsers_Click"
+    ToolTip="Resource name: MaterialDesignRaisedButton">
+            Show users
+        </Button>
+        <DataGrid x:Name="DataUsers" AutoGenerateColumns="False" Margin="5" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding userId}" Header="userID"/>
+                <DataGridTextColumn Binding="{Binding username}" Header="username"/>
+                <DataGridTextColumn Binding="{Binding password}" Header="password"/>
+                <DataGridTextColumn Binding="{Binding mail}" Header="mail"/>
+                <DataGridTextColumn Binding="{Binding displayname}" Header="displayname"/>
+                <DataGridTextColumn Binding="{Binding bio}" Header="bio"/>
+                <DataGridTextColumn Binding="{Binding title}" Header="title"/>
+                <DataGridTextColumn Binding="{Binding language}" Header="language"/>
+                <DataGridTextColumn Binding="{Binding Wallet.balance}" Header="wallet Balance"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="btnCreateUser"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    Width="375" Grid.Row="0" Grid.Column="0" Click="btnCreateUser_Click"
+    Width="150" Grid.Row="1" Grid.Column="0" Click="btnCreateUser_Click"
     ToolTip="Resource name: MaterialDesignRaisedButton">
             Create user
         </Button>
         <Button x:Name="btnUpdateUser"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    Width="375" Grid.Row="1" Grid.Column="0" Click="btnUpdateUser_Click" 
+    Width="150" Grid.Row="2" Grid.Column="0" Click="btnUpdateUser_Click" 
     ToolTip="Resource name: MaterialDesignRaisedButton">
             Update user
         </Button>
         <Button x:Name="btnDeleteUser"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    Width="375" Grid.Row="2" Grid.Column="0" Click="btnDeleteUser_Click"
+    Width="150" Grid.Row="3" Grid.Column="0" Click="btnDeleteUser_Click"
     ToolTip="Resource name: MaterialDesignRaisedButton">
             Delete user
         </Button>
-        <TextBox x:Name="txtZoekViaDisplayname" Grid.Row="3" Grid.Column="0" Margin="5" materialDesign:HintAssist.Hint="Displayname"/>
+        <TextBox x:Name="txtZoekViaDisplayname" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" materialDesign:HintAssist.Hint="Displayname"/>
         <Button x:Name="ZoekOpDisplayname"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    Width="375" Grid.Row="3" Grid.Column="1" Click="ZoekOpDisplayname_Click" 
+    Width="375" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Click="ZoekOpDisplayname_Click" 
     ToolTip="Resource name: MaterialDesignRaisedButton">
             Zoeken op displayname
         </Button>
-        <ComboBox x:Name="cmbLanguage" Grid.Row="4" Grid.Column="0" Margin="5" materialDesign:HintAssist.Hint="Taal"/>
+        <ComboBox x:Name="cmbLanguage" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" materialDesign:HintAssist.Hint="Taal"/>
         <Button x:Name="ZoekOpTaal"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    Width="375" Grid.Row="4" Grid.Column="1" Click="ZoekOpTaal_Click"
+    Width="375" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Click="ZoekOpTaal_Click"
     ToolTip="Resource name: MaterialDesignRaisedButton">
             Zoeken op Taal
         </Button>

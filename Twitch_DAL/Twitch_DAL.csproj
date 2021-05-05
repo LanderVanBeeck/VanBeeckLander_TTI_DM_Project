@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseOperations.cs" />
+    <Compile Include="FileOperations.cs" />
     <Compile Include="Game.cs">
       <DependentUpon>TwitchbeheerModel.tt</DependentUpon>
     </Compile>
@@ -92,32 +94,30 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="TwitchbeheerModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TwitchbeheerModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="packages.config" />
     <None Include="TwitchbeheerModel.edmx.diagram">
       <DependentUpon>TwitchbeheerModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="TwitchbeheerModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TwitchbeheerModel.Context.cs</LastGenOutput>
       <DependentUpon>TwitchbeheerModel.edmx</DependentUpon>
+      <LastGenOutput>TwitchbeheerModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="TwitchbeheerModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TwitchbeheerModel.edmx</DependentUpon>
       <LastGenOutput>TwitchbeheerModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

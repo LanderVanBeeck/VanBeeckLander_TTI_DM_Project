@@ -18,7 +18,7 @@ namespace Twitch_DAL
         public Nullable<int> userId { get; set; }
         public Nullable<int> gameId { get; set; }
     
-        public virtual Game Game { get; set; }
-        public virtual User User { get; set; }
+        public virtual Game Games { get; set; }
+        public virtual User Users { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace Twitch_DAL
         public Nullable<int> userId { get; set; }
         public Nullable<int> primeId { get; set; }
     
-        public virtual Prime Prime { get; set; }
-        public virtual User User { get; set; }
+        public virtual Prime Primes { get; set; }
+        public virtual User Users { get; set; }
     }
 }

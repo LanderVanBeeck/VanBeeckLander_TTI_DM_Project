@@ -18,7 +18,7 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
-
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBox x:Name="txtUsername" Grid.Row="0" Grid.Column="0" Margin="5" materialDesign:HintAssist.Hint="Username"/>
         <TextBox x:Name="txtDisplayname" Grid.Row="0" Grid.Column="1" Margin="5" materialDesign:HintAssist.Hint="Displayname"/>
@@ -29,15 +29,16 @@
         <ComboBox x:Name="cmbLanguage" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" materialDesign:HintAssist.Hint="Language"/>
         <Button x:Name="btnCancel"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    Width="375" Grid.Row="4" Grid.Column="0" Click="btnCancel_Click"
+    Width="375" Grid.Row="5" Grid.Column="0" Click="btnCancel_Click"
     ToolTip="Resource name: MaterialDesignRaisedButton">
             Cancel
         </Button>
         <Button x:Name="btnCreateUser"
     Style="{StaticResource MaterialDesignRaisedButton}"
-    Width="375" Grid.Row="4" Grid.Column="1" Click="btnCreateUser_Click"
+    Width="375" Grid.Row="5" Grid.Column="1" Click="btnCreateUser_Click"
     ToolTip="Resource name: MaterialDesignRaisedButton">
             Create user
         </Button>
+        <ComboBox x:Name="cmbPrime" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" materialDesign:HintAssist.Hint="Select a prime option to add to the user (optional)"/>
     </Grid>
 </Window>

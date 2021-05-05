@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VanBeeckLander_TTI_DM_Proje
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitch_DAL", "..\Twitch_DAL\Twitch_DAL.csproj", "{2331EFBC-EF0C-4039-8817-9F73F796A475}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitch_Models", "..\Twitch_Models\Twitch_Models.csproj", "{BE2BA747-E585-40D2-825B-8852EAEE6C8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2331EFBC-EF0C-4039-8817-9F73F796A475}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2331EFBC-EF0C-4039-8817-9F73F796A475}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2331EFBC-EF0C-4039-8817-9F73F796A475}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE2BA747-E585-40D2-825B-8852EAEE6C8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2BA747-E585-40D2-825B-8852EAEE6C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2BA747-E585-40D2-825B-8852EAEE6C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2BA747-E585-40D2-825B-8852EAEE6C8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
