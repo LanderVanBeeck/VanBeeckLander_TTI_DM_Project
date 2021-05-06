@@ -62,5 +62,39 @@ namespace Twitch_DAL
                 return 0;
             }
         }
+
+        public static int UpdateUser(User user)
+        {
+            try
+            {
+                using (TwitchEntities entities = new TwitchEntities())
+                {
+                    entities.Entry(user).State = EntityState.Modified;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+        }
+
+        public static int DeleteUser(User user)
+        {
+            try
+            {
+                using (TwitchEntities entities = new TwitchEntities())
+                {
+                    entities.Entry(user).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+        }
     }
 }

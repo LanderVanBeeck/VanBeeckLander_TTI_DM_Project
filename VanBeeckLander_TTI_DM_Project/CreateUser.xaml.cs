@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Twitch_DAL;
+using Twitch_Models;
+
 
 namespace VanBeeckLander_TTI_DM_Project
 {
@@ -22,6 +25,8 @@ namespace VanBeeckLander_TTI_DM_Project
         public CreateUser()
         {
             InitializeComponent();
+
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -36,7 +41,15 @@ namespace VanBeeckLander_TTI_DM_Project
 
         private void btnCreateUser_Click(object sender, RoutedEventArgs e)
         {
-
+             
         }
+
+        //private string Validation(string columnName)
+        //{
+            //if (columnName =="Username" && )
+            //{
+
+            //}
+        //}
     }
 }
