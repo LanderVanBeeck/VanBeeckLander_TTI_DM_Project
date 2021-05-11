@@ -15,7 +15,7 @@ namespace Twitch_DAL
             using (TwitchEntities entities = new TwitchEntities())
             {
                 var query = entities.User
-                    .Include(x => x.Wallets)
+                    .Include(x => x.Wallet)
                     .OrderBy(x => x.displayname)
                     .ThenBy(x => x.username);
                 return query.ToList();
@@ -80,6 +80,23 @@ namespace Twitch_DAL
             }
         }
 
+        public static int DeletePrime(Prime prime)
+        {
+            try
+            {
+                using (TwitchEntities entities = new TwitchEntities())
+                {
+                    entities.Entry(prime.UserPrime).State = EntityState.Deleted;
+                    return entities.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                FileOperations.FoutLoggen(ex);
+                return 0;
+            }
+        }
+
         public static int DeleteUser(User user)
         {
             try
@@ -94,6 +111,17 @@ namespace Twitch_DAL
             {
                 FileOperations.FoutLoggen(ex);
                 return 0;
+            }
+        }
+
+        public static User OphalenUserOpUserID(int userid)
+        {
+            using (TwitchEntities entities = new TwitchEntities())
+            {
+                var query = entities.User
+                    .Where(x => x.userId == userid)
+                    .OrderBy(x => x.userId);
+                return query.SingleOrDefault();
             }
         }
     }

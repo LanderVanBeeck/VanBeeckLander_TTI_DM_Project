@@ -53,70 +53,70 @@
     <Compile Include="DatabaseOperations.cs" />
     <Compile Include="FileOperations.cs" />
     <Compile Include="Game.cs">
-      <DependentUpon>TwitchbeheerModel.tt</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Gamecategory.cs">
-      <DependentUpon>TwitchbeheerModel.tt</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PaymentMethod.cs">
-      <DependentUpon>TwitchbeheerModel.tt</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Prime.cs">
-      <DependentUpon>TwitchbeheerModel.tt</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TwitchbeheerModel.Context.cs">
+    <Compile Include="TwitchBeheerModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TwitchbeheerModel.Context.tt</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="TwitchbeheerModel.cs">
+    <Compile Include="TwitchBeheerModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TwitchbeheerModel.tt</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TwitchbeheerModel.Designer.cs">
+    <Compile Include="TwitchBeheerModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TwitchbeheerModel.edmx</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
-      <DependentUpon>TwitchbeheerModel.tt</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserGame.cs">
-      <DependentUpon>TwitchbeheerModel.tt</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserPrime.cs">
-      <DependentUpon>TwitchbeheerModel.tt</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Wallet.cs">
-      <DependentUpon>TwitchbeheerModel.tt</DependentUpon>
+      <DependentUpon>TwitchBeheerModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="TwitchbeheerModel.edmx">
+    <EntityDeploy Include="TwitchBeheerModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TwitchbeheerModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>TwitchBeheerModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="TwitchbeheerModel.edmx.diagram">
-      <DependentUpon>TwitchbeheerModel.edmx</DependentUpon>
+    <None Include="TwitchBeheerModel.edmx.diagram">
+      <DependentUpon>TwitchBeheerModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TwitchbeheerModel.Context.tt">
+    <Content Include="TwitchBeheerModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TwitchbeheerModel.edmx</DependentUpon>
-      <LastGenOutput>TwitchbeheerModel.Context.cs</LastGenOutput>
+      <DependentUpon>TwitchBeheerModel.edmx</DependentUpon>
+      <LastGenOutput>TwitchBeheerModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TwitchbeheerModel.tt">
+    <Content Include="TwitchBeheerModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TwitchbeheerModel.edmx</DependentUpon>
-      <LastGenOutput>TwitchbeheerModel.cs</LastGenOutput>
+      <DependentUpon>TwitchBeheerModel.edmx</DependentUpon>
+      <LastGenOutput>TwitchBeheerModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

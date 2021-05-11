@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Twitch_Models;
-using Twitch_DAL;
+using Twitch_DAL; 
 
 namespace VanBeeckLander_TTI_DM_Project
 {
@@ -21,13 +21,32 @@ namespace VanBeeckLander_TTI_DM_Project
     /// </summary>
     public partial class UpdateUser : Window
     {
-        public UpdateUser()
-        {
+        List<string> lijstTalen = new List<string>();
+        User UserUpdate = new User();
+        public UpdateUser(int userid)
+        {  
             InitializeComponent();
+            UserUpdate.userId = userid;
+            UserUpdate = DatabaseOperations.OphalenUserOpUserID(userid);
+
         }
+        
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            lijstTalen.Add("Nederlands");
+            lijstTalen.Add("Frans");
+            lijstTalen.Add("Engels");
+            txtUsername.Text = UserUpdate.username;
+            txtDisplayname.Text = UserUpdate.displayname;
+            txtPassword.Text = UserUpdate.password;
+            txtMail.Text = UserUpdate.mail;
+            txtBio.Text = UserUpdate.bio;
+            txtTitle.Text = UserUpdate.title;
+            cmbLanguage.ItemsSource = lijstTalen;
+            cmbLanguage.SelectedItem = UserUpdate.language;
+            
+
             
         }
 

@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Twitch_DAL;
 using Twitch_Models;
-using System.Data.Entity;
 
 namespace VanBeeckLander_TTI_DM_Project
 {
@@ -63,13 +62,11 @@ namespace VanBeeckLander_TTI_DM_Project
 
         private void btnDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-
             string foutmeldingen = Validation("User");
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 User user = DataUsers.SelectedItem as User;
                 string displayname = user.displayname;
-
 
                 int oke = DatabaseOperations.DeleteUser(user);
                 if (oke > 0)
