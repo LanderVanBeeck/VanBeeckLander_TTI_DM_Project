@@ -1,0 +1,86 @@
+﻿<Window x:Class="VanBeeckLander_TTI_DM_Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VanBeeckLander_TTI_DM_Project"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" TextElement.Foreground="{DynamicResource MaterialDesignBody}" TextElement.FontWeight="Regular" TextElement.FontSize="13" TextOptions.TextFormattingMode="Ideal" TextOptions.TextRenderingMode="Auto" Background="{DynamicResource MaterialDesignPaper}" FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btnShowUsers"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Width="750" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Click="btnShowUsers_Click"
+    ToolTip="Resource name: MaterialDesignRaisedButton">
+            Show users
+        </Button>
+        <DataGrid x:Name="DataUsers" AutoGenerateColumns="False" Margin="5" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="3" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding userId}" Header="userID"/>
+                <DataGridTextColumn Binding="{Binding username}" Header="username"/>
+                <DataGridTextColumn Binding="{Binding password}" Header="password"/>
+                <DataGridTextColumn Binding="{Binding mail}" Header="mail"/>
+                <DataGridTextColumn Binding="{Binding displayname}" Header="displayname"/>
+                <DataGridTextColumn Binding="{Binding bio}" Header="bio"/>
+                <DataGridTextColumn Binding="{Binding title}" Header="title"/>
+                <DataGridTextColumn Binding="{Binding language}" Header="language"/>
+                <DataGridTextColumn Binding="{Binding Prime}" Header="Benefits"/>
+                <DataGridTextColumn Binding="{Binding Wallet}" Header="Wallet balance"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnCreateUser"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Width="150" Grid.Row="1" Grid.Column="0" Click="btnCreateUser_Click"
+    ToolTip="Resource name: MaterialDesignRaisedButton">
+            Create user
+        </Button>
+        <Button x:Name="btnUpdateUser"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Width="150" Grid.Row="2" Grid.Column="0" Click="btnUpdateUser_Click" 
+    ToolTip="Resource name: MaterialDesignRaisedButton">
+            Update user
+        </Button>
+        <Button x:Name="btnDeleteUser"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Width="150" Grid.Row="3" Grid.Column="0" Click="btnDeleteUser_Click"
+    ToolTip="Resource name: MaterialDesignRaisedButton">
+            Delete user
+        </Button>
+        <ComboBox x:Name="cmbPrime" materialDesign:HintAssist.Hint="Select a prime option (Optional)" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5"/>
+        <Button x:Name="btnAddPrime"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Width="375" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Margin="5" Click="btnAddPrime_Click"
+    ToolTip="Resource name: MaterialDesignRaisedButton">
+            Add prime
+        </Button>
+        <TextBox x:Name="txtZoekViaDisplayname" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" materialDesign:HintAssist.Hint="Displayname"/>
+        <Button x:Name="ZoekOpDisplayname"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Width="375" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Click="ZoekOpDisplayname_Click" 
+    ToolTip="Resource name: MaterialDesignRaisedButton">
+            Zoeken op displayname
+        </Button>
+        <ComboBox x:Name="cmbLanguage" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" materialDesign:HintAssist.Hint="Taal"/>
+        <Button x:Name="ZoekOpTaal"
+    Style="{StaticResource MaterialDesignRaisedButton}"
+    Width="375" Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Click="ZoekOpTaal_Click"
+    ToolTip="Resource name: MaterialDesignRaisedButton">
+            Zoeken op Taal
+        </Button>
+    </Grid>
+</Window>
