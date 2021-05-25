@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitch_DAL", "..\Twitch_DAL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Twitch_Models", "..\Twitch_Models\Twitch_Models.csproj", "{BE2BA747-E585-40D2-825B-8852EAEE6C8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTesting_UnitTests", "..\UnitTesting_UnitTests\UnitTesting_UnitTests.csproj", "{B58B396D-3F93-4828-AD79-7358F7DAD43D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BE2BA747-E585-40D2-825B-8852EAEE6C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE2BA747-E585-40D2-825B-8852EAEE6C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE2BA747-E585-40D2-825B-8852EAEE6C8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B58B396D-3F93-4828-AD79-7358F7DAD43D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B58B396D-3F93-4828-AD79-7358F7DAD43D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B58B396D-3F93-4828-AD79-7358F7DAD43D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B58B396D-3F93-4828-AD79-7358F7DAD43D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

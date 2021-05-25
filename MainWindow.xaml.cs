@@ -74,8 +74,16 @@ namespace VanBeeckLander_TTI_DM_Project
             string foutmeldingen = Validation("User");
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
+                UserPrime userPrime = DataUsers.SelectedItem as UserPrime;
                 User user = DataUsers.SelectedItem as User;
                 string displayname = user.displayname;
+
+                int ok = DatabaseOperations.DeleteUserPrime(userPrime);
+                if (ok >0)
+                {
+                    DataUsers.SelectedItem = DatabaseOperations.OphalenUserPrime();
+                    Reset();
+                }
 
                 int oke = DatabaseOperations.DeleteUser(user);
                 if (oke > 0)
