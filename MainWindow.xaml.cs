@@ -30,7 +30,7 @@ namespace VanBeeckLander_TTI_DM_Project
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             List<string> lijstTalen = new List<string>();
-            List<string> lijstBenefits = new List<string>();
+            List<Prime> lijstBenefits = new List<Prime>();
             lijstBenefits = DatabaseOperations.OphalenPrimeBenefits();
             lijstTalen.Add("Nederlands");
             lijstTalen.Add("Frans");
@@ -38,10 +38,15 @@ namespace VanBeeckLander_TTI_DM_Project
             btnCreateUser.IsEnabled = false;
             btnUpdateUser.IsEnabled = false;
             btnDeleteUser.IsEnabled = false;
+            btnAddPrime.IsEnabled = false;
             ZoekOpDisplayname.IsEnabled = false;
             ZoekOpTaal.IsEnabled = false;
+            txtZoekViaDisplayname.IsEnabled = false;
+            cmbLanguage.IsEnabled = false;
+            cmbPrime.IsEnabled = false;
             cmbLanguage.ItemsSource = lijstTalen;
             cmbPrime.ItemsSource = lijstBenefits;
+            cmbPrime.DisplayMemberPath = "benefits";
         }
 
         private void btnCreateUser_Click(object sender, RoutedEventArgs e)
@@ -74,26 +79,37 @@ namespace VanBeeckLander_TTI_DM_Project
             string foutmeldingen = Validation("User");
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
-                UserPrime userPrime = DataUsers.SelectedItem as UserPrime;
                 User user = DataUsers.SelectedItem as User;
+                List<UserPrime> userPrimes = new List<UserPrime>();
+                userPrimes = DatabaseOperations.OphalenUserPrimeOpUserId(user.userId);
                 string displayname = user.displayname;
 
-                int ok = DatabaseOperations.DeleteUserPrime(userPrime);
-                if (ok >0)
+                bool VerwijderenGelukt =true;
+                foreach (var userPrime in userPrimes)
                 {
-                    DataUsers.SelectedItem = DatabaseOperations.OphalenUserPrime();
-                    Reset();
+                    int ok = DatabaseOperations.DeleteUserPrime(userPrime);
+                    if (ok == 0)
+                    {
+                        VerwijderenGelukt = false;
+                    }
                 }
 
-                int oke = DatabaseOperations.DeleteUser(user);
-                if (oke > 0)
+                if (VerwijderenGelukt == true)
                 {
-                    DataUsers.SelectedItem = DatabaseOperations.OphalenUsers();
-                    Reset();
+                    int oke = DatabaseOperations.DeleteUser(user);
+                    if (oke > 0)
+                    {
+                        DataUsers.SelectedItem = DatabaseOperations.OphalenUsers();
+                        Reset();
+                    }
+                    else
+                    {
+                        MessageBox.Show("User is niet verwijderd!");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("User is niet verwijderd!");
+                    MessageBox.Show("User is niet verwijdert omdat userPrimes niet verwijderd konden worden");
                 }
             }
             else
@@ -132,6 +148,10 @@ namespace VanBeeckLander_TTI_DM_Project
             btnCreateUser.IsEnabled = true;
             btnUpdateUser.IsEnabled = true;
             btnDeleteUser.IsEnabled = true;
+            btnAddPrime.IsEnabled = true;
+            txtZoekViaDisplayname.IsEnabled = true;
+            cmbLanguage.IsEnabled = true;
+            cmbPrime.IsEnabled = true;
             ZoekOpDisplayname.IsEnabled = true;
             ZoekOpTaal.IsEnabled = true;
         }
@@ -167,16 +187,31 @@ namespace VanBeeckLander_TTI_DM_Project
 
         private void btnAddPrime_Click(object sender, RoutedEventArgs e)
         {
-            Prime prime = new Prime();
-            prime.benefits = cmbPrime.Text;
+            UserPrime Userprime = new UserPrime();
             string foutmeldingen = Validation("Benefits");
             if (string.IsNullOrWhiteSpace(foutmeldingen))
             {
                 User user = (User)DataUsers.SelectedItem;
-                DatabaseOperations.ToevoegenPrime(prime);
+                Prime prime = (Prime)cmbPrime.SelectedItem;
+                Userprime.primeId = prime.primeId;
+                Userprime.userId = user.userId;
+
+                int oke =DatabaseOperations.ToevoegenUserPrime(Userprime);
+
+                if (oke > 0)
+                {
+                    MessageBox.Show("Prime optie is succesvol toegevoegd");
+                    DataUsers.ItemsSource = DatabaseOperations.OphalenUsers();
+                    Reset();
+                }
+                else
+                {
+                    MessageBox.Show("Prime optie is niet toegevoegd!");
+                    DataUsers.ItemsSource = DatabaseOperations.OphalenUsers();
+                    Reset();
+                }
             }
-            DatabaseOperations.OphalenUsers();
-            Reset();
+            
         }
     }
 }

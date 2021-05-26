@@ -39,8 +39,8 @@
                 <DataGridTextColumn Binding="{Binding bio}" Header="bio"/>
                 <DataGridTextColumn Binding="{Binding title}" Header="title"/>
                 <DataGridTextColumn Binding="{Binding language}" Header="language"/>
-                <DataGridTextColumn Binding="{Binding Prime}" Header="Benefits"/>
-                <DataGridTextColumn Binding="{Binding Wallet}" Header="Wallet balance"/>
+                <DataGridTextColumn Binding="{Binding UserPrimes.primeId}" Header="PrimeId"/>
+                <DataGridTextColumn Binding="{Binding Wallet.balance}" Header="Wallet balance"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btnCreateUser"
