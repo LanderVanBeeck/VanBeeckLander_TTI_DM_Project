@@ -72,6 +72,7 @@ namespace VanBeeckLander_TTI_DM_Project
                     if (ok > 0)
                     {
                         MessageBox.Show("Gebruiker is succesvol toegevoegd!");
+                    this.Close();
                     }
                     else
                     {

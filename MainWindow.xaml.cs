@@ -99,8 +99,7 @@ namespace VanBeeckLander_TTI_DM_Project
                     int oke = DatabaseOperations.DeleteUser(user);
                     if (oke > 0)
                     {
-                        DataUsers.SelectedItem = DatabaseOperations.OphalenUsers();
-                        Reset();
+                        MessageBox.Show("User is succesvol verwijderd");
                     }
                     else
                     {
@@ -116,6 +115,8 @@ namespace VanBeeckLander_TTI_DM_Project
             {
                 MessageBox.Show(foutmeldingen);
             }
+            DataUsers.ItemsSource = DatabaseOperations.OphalenUsers();
+            Reset();
         }
 
         private void ZoekOpDisplayname_Click(object sender, RoutedEventArgs e)
